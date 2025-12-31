@@ -10,7 +10,7 @@ public class DepartmentPosition
 
     public DepartmentPosition(Guid id, Department department, Guid positionId)
     {
-        this.Id = id;
+        Id = id;
         Department = department;
         PositionId = positionId;
     }
