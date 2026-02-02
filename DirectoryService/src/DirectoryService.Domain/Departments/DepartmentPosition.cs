@@ -8,10 +8,13 @@ public class DepartmentPosition
 
     public Guid PositionId { get; private set; }
 
-    public DepartmentPosition(Guid id, Department department, Guid positionId)
+    public DepartmentPosition(Department department, Guid positionId)
     {
-        Id = id;
+        Id = Guid.NewGuid();
         Department = department;
         PositionId = positionId;
     }
+    
+    // EF Core
+    private DepartmentPosition() { }
 }

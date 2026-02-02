@@ -28,5 +28,8 @@ namespace DirectoryService.Domain.Locations
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
         }
+        
+        // EF Core
+        private Location() { }
     }
 }

@@ -4,9 +4,9 @@ namespace DirectoryService.Domain.Departments
 {
     public class Department
     {
-        private List<DepartmentLocation> _locations = new List<DepartmentLocation>();
+        private List<DepartmentLocation> _locations = new ();
         
-        private List<DepartmentPosition> _positions = new List<DepartmentPosition>();
+        private List<DepartmentPosition> _positions = new ();
 
         public Guid Id { get; }
 
@@ -47,15 +47,18 @@ namespace DirectoryService.Domain.Departments
                 AddLocation(locId);
             }
         }
+        
+        // EF Core
+        public Department() { }
 
         public void AddLocation(Guid locationId)
         {
-            _locations.Add(new DepartmentLocation(Guid.NewGuid(), this, locationId));
+            _locations.Add(new DepartmentLocation(this, locationId));
         }
 
         public void AddPosition(Guid positionId)
         {
-            _positions.Add(new DepartmentPosition(Guid.NewGuid(), this, positionId));
+            _positions.Add(new DepartmentPosition(this, positionId));
         }
     }
 }

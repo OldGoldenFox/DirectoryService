@@ -18,7 +18,7 @@
                 throw new ArgumentException("Location name cannot be null or whitespace.");
             }
             
-            if (value.Trim().Length < 3 || value.Trim().Length > 120)
+            if (value.Length < 3 || value.Length > 120)
             {
                 throw new ArgumentException("Location name must be between 3 and 120 characters long.");
             }
