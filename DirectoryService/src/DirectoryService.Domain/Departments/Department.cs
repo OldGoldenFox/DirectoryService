@@ -12,7 +12,7 @@ namespace DirectoryService.Domain.Departments
 
         public DepartmentName Name { get; private set; }
 
-        public DepartmentIdentidier Identifier { get; private set; }
+        public DepartmentIdentifier Identifier { get; private set; }
 
         public Guid? ParentId { get; private set; }
 
@@ -30,7 +30,7 @@ namespace DirectoryService.Domain.Departments
 
         public IReadOnlyList<DepartmentPosition> Positions => _positions;
         
-        public Department(DepartmentName name, DepartmentIdentidier identifier, Guid? parentId, DepartmentPath path, short depth, IEnumerable<Guid> locationIds)
+        public Department(DepartmentName name, DepartmentIdentifier identifier, Guid? parentId, DepartmentPath path, short depth, IEnumerable<Guid> locationIds)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -53,12 +53,12 @@ namespace DirectoryService.Domain.Departments
 
         public void AddLocation(Guid locationId)
         {
-            _locations.Add(new DepartmentLocation(this, locationId));
+            _locations.Add(new DepartmentLocation(Id, locationId));
         }
 
         public void AddPosition(Guid positionId)
         {
-            _positions.Add(new DepartmentPosition(this, positionId));
+            _positions.Add(new DepartmentPosition(Id, positionId));
         }
     }
 }

@@ -15,14 +15,16 @@ namespace DirectoryService.Infrastructure.Postgres.Configurations
             builder.Property(dp => dp.Id)
                 .HasColumnName("id");
             
+            builder.Property(dp => dp.DepartmentId)
+                .HasColumnName("department_id");
+            
             builder.Property(dp => dp.PositionId)
                 .HasColumnName("position_id");
-
-            builder.HasOne(dp => dp.Department)
+            
+            builder.HasOne<Department>()
                 .WithMany(d => d.Positions)
-                .HasForeignKey("department_id")
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(dp => dp.DepartmentId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

@@ -1,15 +1,15 @@
 ﻿namespace DirectoryService.Domain.Departments.ValueObjects
 {
-    public record DepartmentIdentidier
+    public record DepartmentIdentifier
     {
         public string Value { get; }
 
-        private DepartmentIdentidier(string value)
+        private DepartmentIdentifier(string value)
         {
             Value = value;
         }
 
-        public static DepartmentIdentidier Create(string value)
+        public static DepartmentIdentifier Create(string value)
         {
             value = value.Trim();
             
@@ -28,7 +28,7 @@
                 throw new ArgumentException("Department identifier must contain only Latin letters.");
             }
             
-            return new DepartmentIdentidier(value);
+            return new DepartmentIdentifier(value);
         }
     }
 }

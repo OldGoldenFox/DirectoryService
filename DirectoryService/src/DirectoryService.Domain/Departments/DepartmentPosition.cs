@@ -4,14 +4,14 @@ public class DepartmentPosition
 {
     public Guid Id { get; }
 
-    public Department Department { get; }
+    public Guid DepartmentId { get; }
 
     public Guid PositionId { get; private set; }
 
-    public DepartmentPosition(Department department, Guid positionId)
+    public DepartmentPosition(Guid departmentId, Guid positionId)
     {
         Id = Guid.NewGuid();
-        Department = department;
+        DepartmentId = departmentId;
         PositionId = positionId;
     }
     
