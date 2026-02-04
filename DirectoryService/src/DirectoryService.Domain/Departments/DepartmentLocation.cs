@@ -4,14 +4,17 @@ public class DepartmentLocation
 {
     public Guid Id { get; }
 
-    public Department Department { get; }
-
+    public Guid DepartmentId { get; }
+    
     public Guid LocationId { get; private set; }
 
-    public DepartmentLocation(Guid id, Department department, Guid locationId)
+    public DepartmentLocation(Guid departmentId, Guid locationId)
     {
-        Id = id;
-        Department = department;
+        Id = Guid.NewGuid();
+        DepartmentId = departmentId;
         LocationId = locationId;
     }
+    
+    // EF Core
+    private DepartmentLocation() { }
 }

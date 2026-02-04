@@ -6,7 +6,7 @@ namespace DirectoryService.Domain.Positions
     {
         public Guid Id { get; }
 
-        public PositionName Name { get; private set; }
+        public PositionName Name { get; private set; } = null!;
 
         public PositionDescription? Description { get; private set; }
 
@@ -25,5 +25,8 @@ namespace DirectoryService.Domain.Positions
             CreatedAt = DateTime.UtcNow;
             UpdatedAt = DateTime.UtcNow;
         }
+        
+        // EF Core
+        private Position() { }
     }
 }

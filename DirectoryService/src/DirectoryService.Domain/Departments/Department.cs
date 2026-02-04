@@ -4,15 +4,15 @@ namespace DirectoryService.Domain.Departments
 {
     public class Department
     {
-        private List<DepartmentLocation> _locations = new List<DepartmentLocation>();
+        private List<DepartmentLocation> _locations = new ();
         
-        private List<DepartmentPosition> _positions = new List<DepartmentPosition>();
+        private List<DepartmentPosition> _positions = new ();
 
         public Guid Id { get; }
 
         public DepartmentName Name { get; private set; }
 
-        public DepartmentIdentidier Identifier { get; private set; }
+        public DepartmentIdentifier Identifier { get; private set; }
 
         public Guid? ParentId { get; private set; }
 
@@ -30,7 +30,7 @@ namespace DirectoryService.Domain.Departments
 
         public IReadOnlyList<DepartmentPosition> Positions => _positions;
         
-        public Department(DepartmentName name, DepartmentIdentidier identifier, Guid? parentId, DepartmentPath path, short depth, IEnumerable<Guid> locationIds)
+        public Department(DepartmentName name, DepartmentIdentifier identifier, Guid? parentId, DepartmentPath path, short depth, IEnumerable<Guid> locationIds)
         {
             Id = Guid.NewGuid();
             Name = name;
@@ -47,15 +47,18 @@ namespace DirectoryService.Domain.Departments
                 AddLocation(locId);
             }
         }
+        
+        // EF Core
+        public Department() { }
 
         public void AddLocation(Guid locationId)
         {
-            _locations.Add(new DepartmentLocation(Guid.NewGuid(), this, locationId));
+            _locations.Add(new DepartmentLocation(Id, locationId));
         }
 
         public void AddPosition(Guid positionId)
         {
-            _positions.Add(new DepartmentPosition(Guid.NewGuid(), this, positionId));
+            _positions.Add(new DepartmentPosition(Id, positionId));
         }
     }
 }
